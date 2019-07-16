@@ -2,12 +2,14 @@ package gotLogs
 
 import java.lang
 
+import com.alibaba.fastjson.JSONObject
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkConf
+import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-import org.apache.spark.streaming.dstream.InputDStream
+import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import redis.clients.jedis.Jedis
 import utils.{ConnectPoolUtils, OffsetInRedis}
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, HasOffsetRanges, KafkaUtils, LocationStrategies, OffsetRange}
@@ -29,8 +31,6 @@ object FetchLogLine {
      * 配置基本参数
      */
 
-    // zookeeper节点
-    val zks = "192.168.163.22:2181"
     // 消费者组
     val groupID = "realtimeana_consumer"
     // 生产者主题
@@ -54,7 +54,7 @@ object FetchLogLine {
       val topics: Map[String, Int] = Map(topic -> 1)
     val partitionToLong: Map[TopicPartition, Long] = OffsetInRedis.apply(groupID)
 
-    val stream :InputDStream[ConsumerRecord[String,String]] =
+    val stream :InputDStream[ConsumerRecord[String,String]] =  // InputDStream 继承了 DStream
       if(partitionToLong.isEmpty){
         KafkaUtils.createDirectStream(ssc,
           // 本地策略
@@ -78,16 +78,25 @@ object FetchLogLine {
      */
 
     stream.cache()
-    stream.flatMap()
     stream.foreachRDD({
       rdd=>
         val offestRange: Array[OffsetRange] = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
+        val jedis: Jedis = ConnectPoolUtils.getJedis
         // 业务处理
 //        rdd.map(_.value()).foreach(println)
-        ParseLogs.splitLog(rdd)
+        val jsRdd: RDD[JSONObject] = ParseLogs.splitLog(rdd)
+        val values: RDD[(String, List[Double])] = ParseLogs.topUp(jsRdd)
+        val values_permin: RDD[(String, Int)] = ParseLogs.orders_permin(jsRdd)
+        // 将数据存入redis
+        ParseLogs.saveStageOne(values, jedis)
+        // 每分钟的数据存储
+        ParseLogs.save_permin(values_permin, jedis)
+        val values_failureorders_per_cityday: RDD[((String, String), Int)] = ParseLogs.failure_orders_per_city_per_day(jsRdd)
+        // 将各省每小时的失败订单量统计存储
+        ParseLogs.save_failure_orders_per_city_per_day(values_failureorders_per_cityday)
+
 
         // 将偏移量进行更新
-        val jedis: Jedis = ConnectPoolUtils.getJedis
         for (or <- offestRange){
           jedis.hset(groupID, or.topic + "-" + or.partition, or.untilOffset.toString)
         }
@@ -96,7 +105,6 @@ object FetchLogLine {
     // 启动
     ssc.start()
     ssc.awaitTermination()
-
 
   }
 

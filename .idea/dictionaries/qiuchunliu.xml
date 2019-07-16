@@ -2,15 +2,25 @@
   <dictionary name="qiuchunliu">
     <words>
       <w>brocker</w>
+      <w>bussiness</w>
+      <w>chargefee</w>
+      <w>cityday</w>
+      <w>datestr</w>
+      <w>eachday</w>
+      <w>failureorders</w>
       <w>fastjson</w>
       <w>formdb</w>
       <w>getconf</w>
       <w>getsk</w>
+      <w>issuc</w>
       <w>jedis</w>
       <w>kafkas</w>
+      <w>newtime</w>
       <w>offest</w>
+      <w>permin</w>
       <w>rddjson</w>
       <w>realtimeana</w>
+      <w>restemp</w>
       <w>serlizer</w>
       <w>sparkstreaming</w>
     </words>
