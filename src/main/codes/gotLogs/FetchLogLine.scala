@@ -2,7 +2,6 @@ package gotLogs
 
 import java.lang
 
-import constant.Constant
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -30,6 +29,8 @@ object FetchLogLine {
      * 配置基本参数
      */
 
+    // zookeeper节点
+    val zks = "192.168.163.22:2181"
     // 消费者组
     val groupID = "realtimeana_consumer"
     // 生产者主题
@@ -49,7 +50,8 @@ object FetchLogLine {
       "enable.auto.commit"-> (false:lang.Boolean)
     )
       // 创建topic集合
-      val topics: Set[String] = Set(topic)
+//      val topics: Set[String] = Set(topic)
+      val topics: Map[String, Int] = Map(topic -> 1)
     val partitionToLong: Map[TopicPartition, Long] = OffsetInRedis.apply(groupID)
 
     val stream :InputDStream[ConsumerRecord[String,String]] =
@@ -60,7 +62,7 @@ object FetchLogLine {
           LocationStrategies.PreferConsistent,
           // 消费者策略
           // 可以动态增加分区
-          ConsumerStrategies.Subscribe[String,String](topics,kafkas)
+          ConsumerStrategies.Subscribe[String,String](topics.keys,kafkas)
         )
       }else{
         // 不是第一次消费
@@ -75,11 +77,14 @@ object FetchLogLine {
      * 业务处理部分
      */
 
+    stream.cache()
+    stream.flatMap()
     stream.foreachRDD({
       rdd=>
         val offestRange: Array[OffsetRange] = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
         // 业务处理
-        rdd.map(_.value()).foreach(println)
+//        rdd.map(_.value()).foreach(println)
+        ParseLogs.splitLog(rdd)
 
         // 将偏移量进行更新
         val jedis: Jedis = ConnectPoolUtils.getJedis
