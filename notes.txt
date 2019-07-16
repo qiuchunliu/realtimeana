@@ -1,0 +1,7 @@
+1   Exception in thread "main" org.apache.spark.SparkException:
+    Only one SparkContext may be running in this JVM (see SPARK-2243).
+    To ignore this error, set spark.driver.allowMultipleContexts = true. The currently running SparkContext was created at:
+
+    解决：配置的ssc冲突了，重新捋顺一下就好
+
+2

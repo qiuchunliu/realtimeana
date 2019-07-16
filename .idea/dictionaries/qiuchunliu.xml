@@ -1,9 +1,16 @@
 <component name="ProjectDictionaryState">
   <dictionary name="qiuchunliu">
     <words>
+      <w>brocker</w>
+      <w>formdb</w>
       <w>getconf</w>
       <w>getsk</w>
+      <w>jedis</w>
+      <w>kafkas</w>
+      <w>offest</w>
       <w>realtimeana</w>
+      <w>serlizer</w>
+      <w>sparkstreaming</w>
     </words>
   </dictionary>
 </component>
