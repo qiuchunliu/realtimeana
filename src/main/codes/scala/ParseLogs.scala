@@ -3,9 +3,8 @@ package scala
 import java.sql.{Connection, Statement}
 
 import com.alibaba.fastjson.{JSON, JSONObject}
-import constant.{Constant, ConstantCity}
+import constant.ConstantCity
 import org.apache.kafka.clients.consumer.ConsumerRecord
-import org.apache.spark.rdd
 import org.apache.spark.rdd.RDD
 import redis.clients.jedis.Jedis
 import utils.{ConnectPoolUtils, ParseTime}
@@ -74,7 +73,6 @@ object ParseLogs {
 
   /**
     * 将每日的数据存入redis
-    *
     * @param v 待存数据
     */
   def saveStageOne(v: RDD[(String, List[Double])]): Unit = {
@@ -98,7 +96,6 @@ object ParseLogs {
 
   /**
     * 将每分钟的数据存入redis
-    *
     * @param v 以分钟数为key， 1 为value
     */
   def save_permin(v: RDD[(String, Int)]): Unit = {
@@ -115,7 +112,6 @@ object ParseLogs {
 
   /**
     * 各省每小时失败的订单量
-    *
     * @param rdd log的json字符串
     */
   def failure_orders_per_city_per_day(rdd: RDD[JSONObject]): RDD[((String, String), Int)] = {
@@ -134,7 +130,6 @@ object ParseLogs {
   /**
     * 各省每小时失败订单量
     * 将数据存入mysql
-    *
     * @param v 各省每小时的失败订单数据
     *          v : ((日期，城市)， 失败数量)
     */
@@ -162,13 +157,12 @@ object ParseLogs {
     // 实时统计每小时的充值笔数和充值金额
     /**
       * 获取订单的日期(精确到分钟)、省份、充值是否成功、成功充值的金额
-      *
       * @param rdd jsonObject
       * @return
       */
     def res4(rdd: RDD[JSONObject]): RDD[((String, String), List[Double])] = {
       rdd.map(e => {
-        // 获取日期,精确到小时  如：201704120305
+        // 获取日期,精确到分钟  如：201704120305
         val requestID: String = e.getString("requestId").substring(0, 12)
         //  业务是否成功，即充值是否成功
         val isCharged: Int = if (e.getString("bussinessRst").equals("0000")) 1 else 0

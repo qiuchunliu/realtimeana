@@ -1,13 +1,11 @@
 package gotLogs
 
-import java.lang
 import java.sql.Connection
 
 import com.alibaba.fastjson.JSONObject
 import constant.Constant
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.TopicPartition
-import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.{Seconds, StreamingContext}
@@ -22,7 +20,7 @@ object FetchLogLine {
   def fetchSingleLogLine(){
     // 获取 sparkstreaming
 
-    val conf: SparkConf = new SparkConf().setAppName("real").setMaster("local[2]")
+    val conf: SparkConf = new SparkConf().setAppName("real").setMaster("spark://192.168.163.21:7077")
     conf      // 设置每秒钟每个分区拉取kafka的速率
       .set("spark.streaming.kafka.maxRatePerPartition","100")
       // 设置序列化机制
@@ -85,7 +83,7 @@ object FetchLogLine {
         // 将各省每小时的失败订单量统计存储
         ParseLogs.save_failure_orders_per_city_per_day(values_failureorders_per_cityday)
         /**
-          * 获取订单的日期(精确到小时)、省份、充值是否成功、成功充值的金额
+          * 获取订单的日期(精确到分钟)、省份、充值是否成功、成功充值的金额
           * 存入mysql
           */
         val values_res4: RDD[((String, String), List[Double])] = ParseLogs.res4(jsRdd)

@@ -27,3 +27,5 @@
 
 8   mysql中保留几位小数：round(num, 小数位数)  比如： round(2.32134, 3) ---> 2.321
     mysql 中百分数显示  concat(str1, str2) 字符串拼接，呵呵了
+
+9   算子作用在executor上
