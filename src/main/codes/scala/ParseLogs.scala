@@ -161,15 +161,15 @@ object ParseLogs {
     // 以省份为维度，每天的订单数、成功数、(成功率)
     // 实时统计每小时的充值笔数和充值金额
     /**
-      * 获取订单的日期(精确到小时)、省份、充值是否成功、成功充值的金额
+      * 获取订单的日期(精确到分钟)、省份、充值是否成功、成功充值的金额
       *
       * @param rdd jsonObject
       * @return
       */
     def res4(rdd: RDD[JSONObject]): RDD[((String, String), List[Double])] = {
       rdd.map(e => {
-        // 获取日期,精确到小时  如：2017041203
-        val requestID: String = e.getString("requestId").substring(0, 10)
+        // 获取日期,精确到小时  如：201704120305
+        val requestID: String = e.getString("requestId").substring(0, 12)
         //  业务是否成功，即充值是否成功
         val isCharged: Int = if (e.getString("bussinessRst").equals("0000")) 1 else 0
         // 获取充值金额

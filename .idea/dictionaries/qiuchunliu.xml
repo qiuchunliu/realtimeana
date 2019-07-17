@@ -2,6 +2,7 @@
   <dictionary name="qiuchunliu">
     <words>
       <w>brocker</w>
+      <w>brockerlist</w>
       <w>bussiness</w>
       <w>chargefee</w>
       <w>cityday</w>
@@ -12,6 +13,7 @@
       <w>formdb</w>
       <w>getconf</w>
       <w>getsk</w>
+      <w>groupid</w>
       <w>hmmss</w>
       <w>issuc</w>
       <w>jedis</w>

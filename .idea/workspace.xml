@@ -2,28 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6eadb6d-1a2c-453b-9467-e2d08fd640da" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/codes/config/ConfigMana.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/params.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/qiuchunliu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/qiuchunliu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/codes/RunIt/RunTest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/codes/RunIt/RunTest.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/codes/constant/Constant.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/codes/constant/Constant.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/codes/gotLogs/FetchLogLine.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/codes/gotLogs/FetchLogLine.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/codes/scala/ParseLogs.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/codes/scala/ParseLogs.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/codes/utils/ConnectPoolUtils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/codes/utils/ConnectPoolUtils.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/codes/utils/ParseTime.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/codes/utils/ParseTime.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/RunIt/RunTest$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RunIt/RunTest$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gotLogs/FetchLogLine$$anonfun$fetchSingleLogLine$1$$anonfun$apply$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gotLogs/FetchLogLine$$anonfun$fetchSingleLogLine$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/constant/Constant$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/constant/Constant$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/constant/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/constant/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gotLogs/FetchLogLine$$anonfun$fetchSingleLogLine$1$$anonfun$apply$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gotLogs/FetchLogLine$$anonfun$fetchSingleLogLine$1$$anonfun$apply$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gotLogs/FetchLogLine$$anonfun$fetchSingleLogLine$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gotLogs/FetchLogLine$$anonfun$fetchSingleLogLine$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/gotLogs/FetchLogLine$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gotLogs/FetchLogLine$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$failure_orders_per_city_per_day$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$failure_orders_per_city_per_day$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$failure_orders_per_city_per_day$2$$anonfun$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$failure_orders_per_city_per_day$2$$anonfun$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$failure_orders_per_city_per_day$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$failure_orders_per_city_per_day$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$saveStageOne$1$$anonfun$apply$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$saveStageOne$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$saveStageOne$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$save_permin$1$$anonfun$apply$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$save_permin$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$save_permin$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$res$1$$anonfun$apply$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$res$1$$anonfun$apply$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$res$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$res$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$res4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs$$anonfun$res4$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scala/ParseLogs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scala/ParseLogs.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/utils/ConnectPoolUtils$$anonfun$getConnections$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/ConnectPoolUtils$$anonfun$getConnections$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/ParseTime$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/ParseTime$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utils/ConnectPoolUtils$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/ConnectPoolUtils$.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -41,7 +41,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/codes/utils/CollectLog10.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
+            <state relative-caret-position="329">
               <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -51,31 +51,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/codes/RunIt/RunTest.scala">
+        <entry file="file://$PROJECT_DIR$/src/main/codes/config/ConfigMana.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="12" />
+            <state relative-caret-position="231">
+              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
               <folding>
-                <element signature="e#15#61#0" expanded="true" />
+                <element signature="e#16#42#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/codes/utils/ParseTime.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/codes/gotLogs/FetchLogLine.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+            <state relative-caret-position="259">
+              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
               <folding>
                 <element signature="e#17#33#0" expanded="true" />
               </folding>
@@ -83,13 +74,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/codes/scala/ParseLogs.scala">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/codes/constant/Constant.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="167" column="8" lean-forward="true" selection-start-line="167" selection-start-column="8" selection-end-line="167" selection-end-column="8" />
+            <state relative-caret-position="370">
+              <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
               <folding>
-                <element signature="e#15#54#0" expanded="true" />
+                <element signature="e#18#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/notes.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+            <state relative-caret-position="357">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -131,16 +122,19 @@
         <option value="$PROJECT_DIR$/src/main/codes/utils/CollectLog10.java" />
         <option value="$PROJECT_DIR$/src/main/codes/utils/OffsetInRedis.scala" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/codes/constant/Constant.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/ParseLogs.scala" />
         <option value="$PROJECT_DIR$/src/main/codes/constant/ConstantCity.scala" />
         <option value="$PROJECT_DIR$/src/main/codes/utils/JJedis.scala" />
-        <option value="$PROJECT_DIR$/src/main/codes/RunIt/RunTest.scala" />
-        <option value="$PROJECT_DIR$/src/main/codes/utils/ConnectPoolUtils.scala" />
-        <option value="$PROJECT_DIR$/notes.txt" />
         <option value="$PROJECT_DIR$/src/main/codes/utils/ParseTime.scala" />
-        <option value="$PROJECT_DIR$/src/main/codes/gotLogs/FetchLogLine.scala" />
+        <option value="$PROJECT_DIR$/src/main/codes/RunIt/RunTest.scala" />
         <option value="$PROJECT_DIR$/src/main/codes/scala/ParseLogs.scala" />
+        <option value="$PROJECT_DIR$/notes.txt" />
+        <option value="$PROJECT_DIR$/src/main/codes/config/ConfigMana.scala" />
+        <option value="$PROJECT_DIR$/src/main/resources/params.properties" />
+        <option value="$PROJECT_DIR$/src/main/codes/utils/ConnectPoolUtils.scala" />
+        <option value="$PROJECT_DIR$/src/main/codes/utils/getKafkas.scala" />
+        <option value="$PROJECT_DIR$/src/main/codes/constant/Constant.scala" />
+        <option value="$PROJECT_DIR$/src/main/codes/gotLogs/FetchLogLine.scala" />
       </list>
     </option>
   </component>
@@ -190,7 +184,23 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="codes" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="realtimeana" type="b2602c69:ProjectViewProjectNode" />
+              <item name="realtimeana" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="codes" type="462c0819:PsiDirectoryNode" />
               <item name="constant" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="realtimeana" type="b2602c69:ProjectViewProjectNode" />
+              <item name="realtimeana" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="codes" type="462c0819:PsiDirectoryNode" />
+              <item name="gotLogs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="realtimeana" type="b2602c69:ProjectViewProjectNode" />
@@ -216,6 +226,13 @@
               <item name="codes" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="realtimeana" type="b2602c69:ProjectViewProjectNode" />
+              <item name="realtimeana" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -230,7 +247,7 @@
     <property name="last_opened_file_path" value="$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -325,7 +342,7 @@
       <workItem from="1563245542385" duration="1423000" />
       <workItem from="1563247014218" duration="26256000" />
       <workItem from="1563283838371" duration="2713000" />
-      <workItem from="1563324652253" duration="32687000" />
+      <workItem from="1563324652253" duration="37266000" />
     </task>
     <task id="LOCAL-00001" summary="v_1">
       <created>1563256507045</created>
@@ -362,11 +379,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563339226700</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="v_5 final version_2:Runnable">
+      <created>1563364214021</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1563364214021</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63079000" />
+    <option name="totallyTimeSpent" value="67658000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -381,7 +405,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.074022345" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22067039" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -414,7 +438,8 @@
     <MESSAGE value="v_2 -- &gt; 可以获取log" />
     <MESSAGE value="v_3 --&gt;" />
     <MESSAGE value="v_4 final version_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v_4 final version_1" />
+    <MESSAGE value="v_5 final version_2:Runnable" />
+    <option name="LAST_COMMIT_MESSAGE" value="v_5 final version_2:Runnable" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/scala/test.scala" />
@@ -481,16 +506,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/codes/constant/Constant.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          <folding>
-            <element signature="e#18#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/codes/constant/ConstantCity.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -554,16 +569,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/codes/utils/CollectLog10.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.m2/repository/org/apache/spark/spark-streaming_2.11/2.2.0/spark-streaming_2.11-2.2.0-sources.jar!/org/apache/spark/streaming/dstream/DStream.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -571,56 +576,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/codes/RunIt/RunTest.scala">
+    <entry file="file://$PROJECT_DIR$/notes.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="12" />
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/codes/utils/CollectLog10.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
           <folding>
-            <element signature="e#15#61#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/codes/scala/ParseLogs.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="183" column="5" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
+          <folding>
+            <element signature="e#15#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/codes/utils/ParseTime.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="420">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/codes/RunIt/RunTest.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/codes/config/ConfigMana.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#16#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/params.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/codes/utils/ConnectPoolUtils.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="28" column="20" lean-forward="true" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+        <state relative-caret-position="21">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#15#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/codes/gotLogs/FetchLogLine.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/codes/utils/getKafkas.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+        <state relative-caret-position="105">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/codes/constant/Constant.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
           <folding>
-            <element signature="e#17#33#0" expanded="true" />
+            <element signature="e#18#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/notes.txt">
+    <entry file="file://$PROJECT_DIR$/src/main/codes/gotLogs/FetchLogLine.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/codes/scala/ParseLogs.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="167" column="8" lean-forward="true" selection-start-line="167" selection-start-column="8" selection-end-line="167" selection-end-column="8" />
+        <state relative-caret-position="259">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
           <folding>
-            <element signature="e#15#54#0" expanded="true" />
+            <element signature="e#17#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -682,6 +728,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

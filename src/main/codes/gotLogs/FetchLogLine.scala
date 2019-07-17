@@ -4,6 +4,7 @@ import java.lang
 import java.sql.Connection
 
 import com.alibaba.fastjson.JSONObject
+import constant.Constant
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -22,39 +23,19 @@ object FetchLogLine {
     // 获取 sparkstreaming
 
     val conf: SparkConf = new SparkConf().setAppName("real").setMaster("local[2]")
-    conf      // 设置没秒钟每个分区拉取kafka的速率
+    conf      // 设置每秒钟每个分区拉取kafka的速率
       .set("spark.streaming.kafka.maxRatePerPartition","100")
       // 设置序列化机制
       .set("spark.serlizer","org.apache.spark.serializer.KryoSerializer")
-//    val ssc: StreamingContext = Constant.getStreamingContext
     val ssc: StreamingContext = new StreamingContext(conf, Seconds(5))
 
     /*
      * 配置基本参数
      */
-
-    // 消费者组
-    val groupID = "realtimeana_consumer"
-    // 生产者主题
-    val topic = "realtimeana"
-    // 指定brocker地址
-    val brockerList = "192.168.163.21:9092"
-    // 配置kafka参数
-    val kafkas: Map[String, Object] = Map[String,Object](
-      "bootstrap.servers"->brockerList,
-      // kafka的Key和values解码方式
-      "key.deserializer"-> classOf[StringDeserializer],
-      "value.deserializer"-> classOf[StringDeserializer],
-      "group.id"->groupID,
-      // 从头消费
-      "auto.offset.reset"-> "earliest",
-      // 不需要程序自动提交Offset
-      "enable.auto.commit"-> (false:lang.Boolean)
-    )
+    val kafkas: Map[String, Object] = Constant.fetchKafkas()
       // 创建topic集合
-//      val topics: Set[String] = Set(topic)
-      val topics: Set[String] = Set(topic)
-    val partitionToLong: Map[TopicPartition, Long] = OffsetInRedis.apply(groupID)
+      val topics: Set[String] = Set(Constant.TOPIC)
+    val partitionToLong: Map[TopicPartition, Long] = OffsetInRedis.apply(Constant.GROUPID)
 
     val stream :InputDStream[ConsumerRecord[String,String]] =  // InputDStream 继承了 DStream
       if(partitionToLong.isEmpty){
@@ -79,27 +60,19 @@ object FetchLogLine {
      * 业务处理部分
      */
 
-    /*
-     * ConsumerRecord[String,String] 中的
-     * 第二个 String 就是获取的 json 串
-     */
-//    stream.map(e => {
-//      val str: String = e.value()
-//      println(str.substring(0, 10))
-//    })
     stream.foreachRDD({
       rdd=>
         val offestRange: Array[OffsetRange] = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
+        // 不要将这个对象传出去，数据库连接不能传
         val jedis: Jedis = ConnectPoolUtils.getJedis
         // 从连接池获取连接
         val connections: Connection = ConnectPoolUtils.getConnections
-//        // 业务处理
+        // 业务处理
         val jsRdd: RDD[JSONObject] = ParseLogs.splitLog(rdd)
         jsRdd.cache()
 
-//        // 每天的订单量、成交额、成功量、总耗时
+        // 每天的订单量、成交额、成功量、总耗时
         val values: RDD[(String, List[Double])] = ParseLogs.topUp(jsRdd)
-
         // 每分钟的订单量
         val values_permin: RDD[(String, Int)] = ParseLogs.orders_permin(jsRdd)
         // 将每天的订单量、成交额、成功量、总耗时数据存入redis
@@ -107,7 +80,8 @@ object FetchLogLine {
         // 每分钟的数据存储
         ParseLogs.save_permin(values_permin)
         // 各省每小时的失败订单量
-        val values_failureorders_per_cityday: RDD[((String, String), Int)] = ParseLogs.failure_orders_per_city_per_day(jsRdd)
+        val values_failureorders_per_cityday: RDD[((String, String), Int)] =
+          ParseLogs.failure_orders_per_city_per_day(jsRdd)
         // 将各省每小时的失败订单量统计存储
         ParseLogs.save_failure_orders_per_city_per_day(values_failureorders_per_cityday)
         /**
@@ -117,11 +91,9 @@ object FetchLogLine {
         val values_res4: RDD[((String, String), List[Double])] = ParseLogs.res4(jsRdd)
         ParseLogs.res(values_res4)
 
-
-
         // 将偏移量进行更新
         for (or <- offestRange){
-          jedis.hset(groupID, or.topic + "-" + or.partition, or.untilOffset.toString)
+          jedis.hset(Constant.GROUPID, or.topic + "-" + or.partition, or.untilOffset.toString)
         }
 
         // 及时关闭

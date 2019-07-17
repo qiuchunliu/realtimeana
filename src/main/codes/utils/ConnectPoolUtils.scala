@@ -3,6 +3,7 @@ package utils
 import java.sql.{Connection, DriverManager}
 import java.util
 
+import config.ConfigMana
 import redis.clients.jedis.{Jedis, JedisPool}
 
 object ConnectPoolUtils {
@@ -24,9 +25,9 @@ object ConnectPoolUtils {
         for(i <- 1 to connectionNum) {
           val co: Connection =
             DriverManager.getConnection(
-            "jdbc:mysql://t21:3306/realtimeana?useUnicode=yes&characterEncoding=utf8",
-            "root",
-            "123456"
+            ConfigMana.prop.getProperty("mysql_url"),
+              ConfigMana.prop.getProperty("mysql_user"),
+              ConfigMana.prop.getProperty("mysql_password")
           )
           pool.push(co)
           conNum += 1

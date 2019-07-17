@@ -24,3 +24,6 @@
     mysql里改 mysql>> set character_set_results=utf8;#改变编码方式
     数据库连接池中要改：String DB_URL =
                      "jdbc:mysql://localhost/ontology?useUnicode=yes&characterEncoding=utf8";
+
+8   mysql中保留几位小数：round(num, 小数位数)  比如： round(2.32134, 3) ---> 2.321
+    mysql 中百分数显示  concat(str1, str2) 字符串拼接，呵呵了
