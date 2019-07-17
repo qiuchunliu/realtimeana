@@ -18,8 +18,9 @@ import org.apache.spark.streaming.kafka010.{ConsumerStrategies, HasOffsetRanges,
 
 object FetchLogLine {
 
-  def fetchSingleLogLine(): Unit ={
+  def fetchSingleLogLine(){
     // 获取 sparkstreaming
+
     val conf: SparkConf = new SparkConf().setAppName("real").setMaster("local[2]")
     conf      // 设置没秒钟每个分区拉取kafka的速率
       .set("spark.streaming.kafka.maxRatePerPartition","100")
@@ -52,7 +53,7 @@ object FetchLogLine {
     )
       // 创建topic集合
 //      val topics: Set[String] = Set(topic)
-      val topics: Map[String, Int] = Map(topic -> 1)
+      val topics: Set[String] = Set(topic)
     val partitionToLong: Map[TopicPartition, Long] = OffsetInRedis.apply(groupID)
 
     val stream :InputDStream[ConsumerRecord[String,String]] =  // InputDStream 继承了 DStream
@@ -63,7 +64,7 @@ object FetchLogLine {
           LocationStrategies.PreferConsistent,
           // 消费者策略
           // 可以动态增加分区
-          ConsumerStrategies.Subscribe[String,String](topics.keys,kafkas)
+          ConsumerStrategies.Subscribe[String,String](topics,kafkas)
         )
       }else{
         // 不是第一次消费
@@ -82,40 +83,40 @@ object FetchLogLine {
      * ConsumerRecord[String,String] 中的
      * 第二个 String 就是获取的 json 串
      */
-    val t: DStream[String] = stream.map(e => {
-      val str: String = e.value()
-      str
-    })
-
-
-    stream.cache()
+//    stream.map(e => {
+//      val str: String = e.value()
+//      println(str.substring(0, 10))
+//    })
     stream.foreachRDD({
       rdd=>
         val offestRange: Array[OffsetRange] = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
         val jedis: Jedis = ConnectPoolUtils.getJedis
         // 从连接池获取连接
         val connections: Connection = ConnectPoolUtils.getConnections
-        // 业务处理
-//        rdd.map(_.value()).foreach(println)
+//        // 业务处理
         val jsRdd: RDD[JSONObject] = ParseLogs.splitLog(rdd)
+        jsRdd.cache()
 
-        // 每天的订单量、成交额、成功量、总耗时
+//        // 每天的订单量、成交额、成功量、总耗时
         val values: RDD[(String, List[Double])] = ParseLogs.topUp(jsRdd)
+
         // 每分钟的订单量
         val values_permin: RDD[(String, Int)] = ParseLogs.orders_permin(jsRdd)
-        // 将数据存入redis
-        ParseLogs.saveStageOne(values, jedis)
+        // 将每天的订单量、成交额、成功量、总耗时数据存入redis
+        ParseLogs.saveStageOne(values)
         // 每分钟的数据存储
-        ParseLogs.save_permin(values_permin, jedis)
+        ParseLogs.save_permin(values_permin)
         // 各省每小时的失败订单量
         val values_failureorders_per_cityday: RDD[((String, String), Int)] = ParseLogs.failure_orders_per_city_per_day(jsRdd)
         // 将各省每小时的失败订单量统计存储
-        ParseLogs.save_failure_orders_per_city_per_day(values_failureorders_per_cityday, connections)
+        ParseLogs.save_failure_orders_per_city_per_day(values_failureorders_per_cityday)
         /**
           * 获取订单的日期(精确到小时)、省份、充值是否成功、成功充值的金额
           * 存入mysql
           */
-        ParseLogs.res4(jsRdd, connections)
+        val values_res4: RDD[((String, String), List[Double])] = ParseLogs.res4(jsRdd)
+        ParseLogs.res(values_res4)
+
 
 
         // 将偏移量进行更新
@@ -130,7 +131,4 @@ object FetchLogLine {
     // 启动
     ssc.start()
     ssc.awaitTermination()
-
-  }
-
-}
+}}

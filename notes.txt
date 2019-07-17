@@ -7,3 +7,20 @@
 2   直接对stream进行rdd处理，不考虑使用mapWithState方法（后续再考虑）
 
 3   存储数据到mysql时，不用考虑太多，做过多计算，直接存，至于展示，那是从数据库调数据的操作
+
+4   org.apache.spark.SparkException: Task not serializable
+    ....
+    Caused by: java.io.NotSerializableException: redis.clients.jedis.Jedis
+
+    分析：向redis存数据的时候，不能直接存rdd数据，要存最终的数据
+         mysql、jedis连接等 不能当参数传出传入，只能在创建连接的作用域内使用
+    解决：在方法内部创建jedis
+
+5   直连方式中，stream无需 创建 cache()
+
+6   foreachRDD 将流转换为 rdd 而不是 将流切分为多个 rdd
+
+7   数据存入mysql中显示 ‘ ?? ’ (像是乱码)
+    mysql里改 mysql>> set character_set_results=utf8;#改变编码方式
+    数据库连接池中要改：String DB_URL =
+                     "jdbc:mysql://localhost/ontology?useUnicode=yes&characterEncoding=utf8";

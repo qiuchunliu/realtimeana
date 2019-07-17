@@ -9,7 +9,7 @@ object RunTest {
 
   def main(args: Array[String]): Unit = {
 
-//    FetchLogLine.fetchSingleLogLine()
+    FetchLogLine.fetchSingleLogLine()
 
     val t: JSONObject = JSON.parseObject("{\"bussinessRst\":\"0000\",\"channelCode\":\"0705\",\"charg" +
       "efee\":\"10000\",\"clientIp\":\"60.168.242.11\",\"endReqTime\":\"20170412055" +
@@ -20,9 +20,6 @@ object RunTest {
       "geReq\",\"shouldfee\":\"9950\",\"startReqTime\":\"20170412055957895\",\"sysId\":\"15\"}")
 
 
-    val s = "20170412055957895"
-    println(s.substring(0, 17))
-//    println(ConstantCity.CITYMAP.getOrElse(t.getString("provinceCode"), "none"))
 
   }
 
