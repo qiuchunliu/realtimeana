@@ -78,7 +78,7 @@ object ParseLogs {
       p.map(e => {
         // e -> (日期， list（总订单量，成功缴费金额，订单是否成功，订单耗时）)
         // 每日订单量
-        jedis.hincrBy(e._1, "orders_eachday", e._2.head.toInt)
+        jedis.hincrBy(e._1, "orders_eachday", e._2.head.toInt)  // .head取第一个值  .tail取非第一个值
         // 每日成功订单量
         jedis.hincrBy(e._1, "suc_orders_eachday", e._2(2).toInt)
         // 每日成交金额
@@ -120,21 +120,62 @@ object ParseLogs {
   }
 
   /**
+    * 各省每小时失败订单量
     * 将数据存入mysql
     * @param v 各省每小时的失败订单数据
     *          v : ((日期，城市)， 失败数量)
     */
-  def save_failure_orders_per_city_per_day(v: RDD[((String, String), Int)]): Unit ={
-    // 从连接池获取连接
-    val connections: Connection = ConnectPoolUtils.getConnections
+  def save_failure_orders_per_city_per_day(v: RDD[((String, String), Int)], connections: Connection): Unit ={
+
     // 创建语句
     val statement: Statement = connections.createStatement()
-    // 要执行的sql
-    val sql = "1223"  // 记得改一下数据库
-    // 执行插入
-    statement.execute(sql)
+    var sql = "" // 记得改一下数据库
 
+    v.map(e => {
+      sql =
+        "insert into " +
+          "failure_perdayprov(order_date,province,counts) " +
+          "values('" + e._1._1 + "','" + e._1._2 + "'," + e._2 + ");"
+      statement.execute(sql)
+    })
   }
+
+  // 充值订单省份top10
+  // 以省份为维度，每天的订单数、成功数、(成功率)
+  // 实时统计每小时的充值笔数和充值金额
+  /**
+    * 获取订单的日期(精确到小时)、省份、充值是否成功、成功充值的金额
+    * @param rdd  jsonObject
+    * @param connections 存入mysql
+    * @return
+    */
+  def res4(rdd: RDD[JSONObject], connections: Connection): RDD[Unit] = {
+    val statement: Statement = connections.createStatement()
+    var sql = ""
+    rdd.map(e => {
+      // 获取日期,精确到小时  如：2017041203
+      val requestID: String = e.getString("requestId").substring(0, 10)
+      //  业务是否成功，即充值是否成功
+      val isCharged: Int = if (e.getString("bussinessRst").equals("0000")) 1 else 0
+      // 获取充值金额
+      // 注意：  只有订单成功了才有订单的成交金额
+      val chargeFee: Double = if (isCharged == 1) e.getString("chargefee").toDouble else 0
+      // 获取省份
+      val province: String = ConstantCity.CITYMAP.getOrElse(e.getString("provinceCode"), "none")
+      ((requestID, province),List[Double](isCharged, chargeFee))
+    }).reduceByKey((l1, l2) => {
+      l1.zip(l2).map(e => e._1 + e._2)  // 对成功订单量进行累加，对成功充值金额进行累加
+    }).map(t => {
+      sql = "insert into res4(order_date,province,isCharged,chargeFee) " +
+        "values('"+t._1._1+"','"+t._1._2+"',"+t._2.head+","+t._2(1)+");"
+      statement.executeUpdate(sql)
+    })
+  }
+
+
+
+
+
 
 
 

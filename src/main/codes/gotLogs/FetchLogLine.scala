@@ -1,6 +1,7 @@
 package gotLogs
 
 import java.lang
+import java.sql.Connection
 
 import com.alibaba.fastjson.JSONObject
 import org.apache.kafka.clients.consumer.ConsumerRecord
@@ -77,30 +78,54 @@ object FetchLogLine {
      * 业务处理部分
      */
 
+    /*
+     * ConsumerRecord[String,String] 中的
+     * 第二个 String 就是获取的 json 串
+     */
+    val t: DStream[String] = stream.map(e => {
+      val str: String = e.value()
+      str
+    })
+
+
     stream.cache()
     stream.foreachRDD({
       rdd=>
         val offestRange: Array[OffsetRange] = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
         val jedis: Jedis = ConnectPoolUtils.getJedis
+        // 从连接池获取连接
+        val connections: Connection = ConnectPoolUtils.getConnections
         // 业务处理
 //        rdd.map(_.value()).foreach(println)
         val jsRdd: RDD[JSONObject] = ParseLogs.splitLog(rdd)
+
+        // 每天的订单量、成交额、成功量、总耗时
         val values: RDD[(String, List[Double])] = ParseLogs.topUp(jsRdd)
+        // 每分钟的订单量
         val values_permin: RDD[(String, Int)] = ParseLogs.orders_permin(jsRdd)
         // 将数据存入redis
         ParseLogs.saveStageOne(values, jedis)
         // 每分钟的数据存储
         ParseLogs.save_permin(values_permin, jedis)
+        // 各省每小时的失败订单量
         val values_failureorders_per_cityday: RDD[((String, String), Int)] = ParseLogs.failure_orders_per_city_per_day(jsRdd)
         // 将各省每小时的失败订单量统计存储
-        ParseLogs.save_failure_orders_per_city_per_day(values_failureorders_per_cityday)
+        ParseLogs.save_failure_orders_per_city_per_day(values_failureorders_per_cityday, connections)
+        /**
+          * 获取订单的日期(精确到小时)、省份、充值是否成功、成功充值的金额
+          * 存入mysql
+          */
+        ParseLogs.res4(jsRdd, connections)
 
 
         // 将偏移量进行更新
         for (or <- offestRange){
           jedis.hset(groupID, or.topic + "-" + or.partition, or.untilOffset.toString)
         }
+
+        // 及时关闭
         jedis.close()
+        connections.close()
     })
     // 启动
     ssc.start()

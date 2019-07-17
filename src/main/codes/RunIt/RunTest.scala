@@ -19,7 +19,10 @@ object RunTest {
       "rIp\":\"172.16.59.241\",\"serverPort\":\"8088\",\"serviceName\":\"sendRechar" +
       "geReq\",\"shouldfee\":\"9950\",\"startReqTime\":\"20170412055957895\",\"sysId\":\"15\"}")
 
-    println(ConstantCity.CITYMAP.getOrElse(t.getString("provinceCode"), "none"))
+
+    val s = "20170412055957895"
+    println(s.substring(0, 17))
+//    println(ConstantCity.CITYMAP.getOrElse(t.getString("provinceCode"), "none"))
 
   }
 

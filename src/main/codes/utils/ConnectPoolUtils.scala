@@ -24,7 +24,7 @@ object ConnectPoolUtils {
         for(i <- 1 to connectionNum) {
           val co: Connection =
             DriverManager.getConnection(
-            "jdbc:mysql://t21:3306/test",
+            "jdbc:mysql://t21:3306/realtimeana",
             "root",
             "123456"
           )

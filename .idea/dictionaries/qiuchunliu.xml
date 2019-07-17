@@ -12,11 +12,13 @@
       <w>formdb</w>
       <w>getconf</w>
       <w>getsk</w>
+      <w>hmmss</w>
       <w>issuc</w>
       <w>jedis</w>
       <w>kafkas</w>
       <w>newtime</w>
       <w>offest</w>
+      <w>perdayprov</w>
       <w>permin</w>
       <w>rddjson</w>
       <w>realtimeana</w>
